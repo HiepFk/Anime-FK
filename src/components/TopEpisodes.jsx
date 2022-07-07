@@ -3,7 +3,7 @@ import Episode from "./Episode";
 import styled from "styled-components";
 
 function TopEpisodes() {
-  const arr = [0, 1, 2, 3];
+  const arr = [0, 1, 2, 3,4];
   return (
     <Wrapper>
       <div className="title">

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { AiFillEye } from "react-icons/ai";
 
-function ItemLarge({ name, image }) {
+function Item({ name, image }) {
   return (
     <Wrapper>
       <div
@@ -49,6 +49,10 @@ const Wrapper = styled.div`
       opacity: 1;
     }
   }
+  .icon {
+    font-size: 1.5rem;
+    color: white;
+  }
 
   .active {
     display: flex;
@@ -69,4 +73,4 @@ const Wrapper = styled.div`
     font-weight: 600;
   }
 `;
-export default ItemLarge;
+export default Item;

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Trailer from "./Trailer";
 function TopTrailer() {
-  const arr = [0, 1, 2, 3];
+  const arr = [0, 1, 2, 3, 4];
 
   return (
     <Wrapper>
