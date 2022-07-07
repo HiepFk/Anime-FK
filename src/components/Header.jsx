@@ -34,12 +34,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-left: 12rem;
-  padding-right: 10rem;
+  padding-right: 10.5rem;
   .menu {
     display: flex;
     align-items: center;
-    width: calc(100% - 40rem);
-    justify-content: space-around;
   }
   .item {
     color: white;

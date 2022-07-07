@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -24,6 +24,14 @@ function Slide() {
       return newValue;
     });
   };
+
+  useEffect(() => {
+    const intervalTime = setInterval(() => {
+      nextPage();
+    }, 5000);
+    return () => clearInterval(intervalTime);
+  }, []);
+
   return (
     <Wrapper>
       <div
@@ -43,13 +51,26 @@ function Slide() {
         <div className="right button" onClick={nextPage}>
           <IoIosArrowForward className="icon" />
         </div>
+        <div className="dots">
+          {data.map((item) => {
+            return (
+              <div
+                className={
+                  item.id - 1 === index ? "dot_item active" : "dot_item"
+                }
+                key={item.id}
+                onClick={() => setIndex(item.id - 1)}
+              ></div>
+            );
+          })}
+        </div>
       </div>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  padding: 2rem 12rem;
+  padding: 3rem 12rem;
   .container {
     height: 35rem;
     position: relative;
@@ -58,15 +79,16 @@ const Wrapper = styled.div`
 
   .name {
     position: absolute;
-    bottom: 10rem;
+    bottom: 8rem;
     left: 5rem;
     font-size: 3rem;
+    font-weight: bold;
     color: #ffffff;
     font-weight: 600;
   }
   .btn {
     position: absolute;
-    bottom: 6rem;
+    bottom: 4rem;
     left: 5rem;
     font-size: 1.5rem;
     background-color: #e53637;
@@ -98,6 +120,24 @@ const Wrapper = styled.div`
     font-size: 2rem;
     color: white;
     transform: rotate(-45deg);
+  }
+  .dots {
+    position: absolute;
+    display: flex;
+    top: calc(100% - 1.5rem);
+    left: calc(50% - 3rem);
+  }
+  .dot_item {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 0.75rem;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .active {
+    background-color: red;
   }
 `;
 
