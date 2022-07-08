@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../asset/logo.png";
 import { menu } from "../utils/link";
+import { RiContactsFill } from "react-icons/ri";
+
 function Header() {
   const [index, setIndex] = useState(1);
   return (
@@ -24,6 +26,9 @@ function Header() {
           );
         })}
       </div>
+      <a href="https://fk-porfolio.netlify.app/">
+        <RiContactsFill className="icon" />
+      </a>
     </Wrapper>
   );
 }
@@ -33,8 +38,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 12rem;
-  padding-right: 10.5rem;
+  padding: 0rem 12rem;
   .menu {
     display: flex;
     align-items: center;
@@ -47,6 +51,10 @@ const Wrapper = styled.div`
   }
   .active {
     background-color: #e53637;
+  }
+  .icon {
+    font-size: 1.5rem;
+    color: white;
   }
 `;
 export default Header;

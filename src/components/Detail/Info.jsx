@@ -4,6 +4,8 @@ import img from "../../asset/details-pic.jpg";
 import { AiFillEye } from "react-icons/ai";
 import { HiChatAlt2 } from "react-icons/hi";
 import { data } from "../../utils/link";
+import { Link } from "react-router-dom";
+
 function Info() {
   return (
     <Wrapper>
@@ -46,7 +48,9 @@ function Info() {
             );
           })}
         </div>
-        <div className="btn">WATCH NOW</div>
+        <Link to={`/animes/1/video`}>
+          <div className="btn">WATCH NOW</div>
+        </Link>
       </div>
     </Wrapper>
   );
@@ -129,6 +133,7 @@ const Wrapper = styled.div`
     margin-top: 1.5rem;
     font-size: 1.15rem;
     width: 10rem;
+    color: white;
     letter-spacing: 1px;
     background-color: #e53637;
     padding: 0.5rem 0rem;

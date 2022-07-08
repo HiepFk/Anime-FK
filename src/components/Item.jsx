@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { AiFillEye } from "react-icons/ai";
 
 function Item({ name, image }) {
@@ -11,9 +12,15 @@ function Item({ name, image }) {
           background: `url(${image}) no-repeat center center /cover`,
         }}
       >
-        <div className="container">
-          <AiFillEye className="icon" />
-        </div>
+        {name === "Luffy Monkey D" ? (
+          <Link to={`/charaters/1`} className="container">
+            <AiFillEye className="icon" />
+          </Link>
+        ) : (
+          <Link to={`/animes/1`} className="container">
+            <AiFillEye className="icon" />
+          </Link>
+        )}
       </div>
       <div className="active">
         <div className="desc_mini">Active</div>
