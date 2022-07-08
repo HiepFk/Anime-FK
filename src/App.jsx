@@ -24,8 +24,8 @@ function App() {
         <Route exact path="animes/:id/video" element={<AnimeWatching />} />
         <Route exact path="mangas" element={<ListManga />} />
         <Route exact path="mangas/:id" element={<DetailManga />} />
-        <Route exact path="charaters" element={<ListCharacter />} />
-        <Route exact path="charaters/:id" element={<DetailCharacter />} />
+        <Route exact path="characters" element={<ListCharacter />} />
+        <Route exact path="characters/:id" element={<DetailCharacter />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

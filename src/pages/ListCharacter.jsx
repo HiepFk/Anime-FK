@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import List from "../components/List/List";
 import Pagination from "../components/List/Pagination";
 import TopEpisodes from "../components/TopEpisodes";
 import TopTrailer from "../components/TopTrailer";
 import styled from "styled-components";
-import image from "../asset/5.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import { getPageCharacter } from "../api/character";
+import Loading from "../components/Loading";
 function ListCharacter() {
+  const dispatch = useDispatch();
+
+  const { loading, characters, page } = useSelector((state) => state.character);
+  useEffect(() => {
+    getPageCharacter(dispatch, page);
+  }, [dispatch, page]);
+  if (loading || !characters?.data) {
+    return <Loading />;
+  }
   return (
     <Wrapper>
       <div className="left">
-        <List title={"TOP CHARATER"} img={image} name="Luffy Monkey D" />
+        <List title={"ALL CHARATER"} data={characters?.data} />
         <Pagination />
       </div>
       <div className="right content">

@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
 import Item from "../Item";
 
-function ListMini({ title, img, name, link }) {
-  const array = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+function ListMini({ title, link, data }) {
   return (
     <Wrapper>
       <div className="title">
@@ -19,8 +18,14 @@ function ListMini({ title, img, name, link }) {
         </Link>
       </div>
       <div className="wrapper">
-        {array.map((item) => {
-          return <Item key={item} image={img} name={name} />;
+        {data.map((item, index) => {
+          return (
+            <Item
+              key={index}
+              image={item?.images?.jpg?.image_url}
+              name={item?.title}
+            />
+          );
         })}
       </div>
     </Wrapper>

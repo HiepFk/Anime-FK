@@ -3,8 +3,7 @@ import styled from "styled-components";
 import Item from "../Item";
 import { FiSearch } from "react-icons/fi";
 
-function ListMini({ title, img, name }) {
-  const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 9, 10, 11, 12];
+function ListMini({ title, data }) {
   return (
     <Wrapper>
       <div className="title">
@@ -20,8 +19,14 @@ function ListMini({ title, img, name }) {
         </form>
       </div>
       <div className="wrapper">
-        {array.map((item) => {
-          return <Item key={item} image={img} name={name} />;
+        {data.map((item, index) => {
+          return (
+            <Item
+              key={index}
+              image={item?.images?.jpg?.image_url}
+              name={item?.title ? item?.title : item?.name}
+            />
+          );
         })}
       </div>
     </Wrapper>

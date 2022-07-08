@@ -1,15 +1,20 @@
-import React from "react";
-import image from "../../asset/1.jpg";
+import React, { useEffect } from "react";
 import ListMini from "./ListMini";
+import { useSelector, useDispatch } from "react-redux";
+import { getAnimeHomePage } from "../../api/anime";
+import Loading from "../Loading";
+
 function Anime() {
-  return (
-    <ListMini
-      title={"TOP ANIME"}
-      img={image}
-      name="Weathering with You"
-      link="/animes"
-    />
-  );
+  const dispatch = useDispatch();
+  const { loading, animes } = useSelector((state) => state.anime);
+  useEffect(() => {
+    getAnimeHomePage(dispatch);
+  }, [dispatch]);
+
+  if (loading || !animes?.data) {
+    return <Loading />;
+  }
+  return <ListMini title={"ANIME"} link="/animes" data={animes?.data} />;
 }
 
 export default Anime;

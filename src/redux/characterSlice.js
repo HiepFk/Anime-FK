@@ -5,10 +5,30 @@ export const characterSlice = createSlice({
   initialState: {
     character: {},
     characters: [],
+    page: 1,
+
     loading: false,
     error: false,
   },
   reducers: {
+    NextPage: (state) => {
+      return {
+        ...state,
+        page: state.page + 1,
+      };
+    },
+    PrePage: (state) => {
+      return {
+        ...state,
+        page: state.page - 1,
+      };
+    },
+    SetPage: (state, action) => {
+      return {
+        ...state,
+        page: action.payload,
+      };
+    },
     GetCharacterStart: (state) => {
       return {
         ...state,
@@ -57,6 +77,9 @@ export const characterSlice = createSlice({
 });
 
 export const {
+  NextPage,
+  PrePage,
+  SetPage,
   GetCharactersStart,
   GetCharactersSuccess,
   GetCharactersError,

@@ -24,7 +24,7 @@ function Item({ name, image }) {
       </div>
       <div className="active">
         <div className="desc_mini">Active</div>
-        <div className="desc_mini">Anime</div>
+        <div className="desc_mini">Best</div>
       </div>
       <div className="name">{name}</div>
     </Wrapper>
