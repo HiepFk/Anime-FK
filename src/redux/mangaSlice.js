@@ -10,18 +10,6 @@ export const mangaSlice = createSlice({
     error: false,
   },
   reducers: {
-    NextPage: (state) => {
-      return {
-        ...state,
-        page: state.page + 1,
-      };
-    },
-    PrePage: (state) => {
-      return {
-        ...state,
-        page: state.page - 1,
-      };
-    },
     SetPage: (state, action) => {
       return {
         ...state,
@@ -76,8 +64,6 @@ export const mangaSlice = createSlice({
 });
 
 export const {
-  NextPage,
-  PrePage,
   SetPage,
   GetMangasStart,
   GetMangasSuccess,

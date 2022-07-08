@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getPageManga } from "../api/manga";
 import Loading from "../components/Loading";
+import { SetPage } from "../redux/mangaSlice";
 
 function ListManga() {
   const dispatch = useDispatch();
@@ -16,6 +17,14 @@ function ListManga() {
     getPageManga(dispatch, page);
   }, [dispatch, page]);
 
+  const handePage = (e) => {
+    dispatch(SetPage(e));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   if (loading || !mangas?.data) {
     return <Loading />;
   }
@@ -23,7 +32,7 @@ function ListManga() {
     <Wrapper>
       <div className="left">
         <List title={"ALL MANGA"} data={mangas?.data} />
-        <Pagination />
+        <Pagination handePage={handePage} page={page} />
       </div>
       <div className="right content">
         <TopEpisodes />

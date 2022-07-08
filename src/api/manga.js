@@ -6,9 +6,6 @@ import {
   GetMangaStart,
   GetMangaSuccess,
   GetMangaError,
-  NextPage,
-  PrePage,
-  SetPage,
 } from "../redux/mangaSlice";
 
 // axios.defaults.withCredentials = true;

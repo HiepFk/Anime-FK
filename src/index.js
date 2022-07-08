@@ -1,16 +1,38 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import { BrowserRouter as Router } from "react-router-dom";
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import "./index.css";
+// import App from "./App";
+// import { Provider } from "react-redux";
+// import store from "./redux/store";
+// import { BrowserRouter as Router } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <Provider store={store}>
+//     <Router>
+//       <App />
+//     </Router>
+//   </Provider>
+// );
+
+import React from "react";
+import App from "./App";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter as Router } from "react-router-dom";
+import "./index.css";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
 root.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Router>
   </Provider>
 );

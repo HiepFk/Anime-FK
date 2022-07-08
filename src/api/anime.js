@@ -6,9 +6,6 @@ import {
   GetAnimeStart,
   GetAnimeSuccess,
   GetAnimeError,
-  NextPage,
-  PrePage,
-  SetPage,
 } from "../redux/animeSlice";
 
 // axios.defaults.withCredentials = true;

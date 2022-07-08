@@ -7,13 +7,24 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getPageCharacter } from "../api/character";
 import Loading from "../components/Loading";
+import { SetPage } from "../redux/characterSlice";
+
 function ListCharacter() {
   const dispatch = useDispatch();
-
   const { loading, characters, page } = useSelector((state) => state.character);
+
   useEffect(() => {
     getPageCharacter(dispatch, page);
   }, [dispatch, page]);
+
+  const handePage = (e) => {
+    dispatch(SetPage(e));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   if (loading || !characters?.data) {
     return <Loading />;
   }
@@ -21,7 +32,7 @@ function ListCharacter() {
     <Wrapper>
       <div className="left">
         <List title={"ALL CHARATER"} data={characters?.data} />
-        <Pagination />
+        <Pagination handePage={handePage} page={page} />
       </div>
       <div className="right content">
         <TopEpisodes />

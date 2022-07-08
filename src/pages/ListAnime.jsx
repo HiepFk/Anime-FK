@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getPageAnime } from "../api/anime";
 import Loading from "../components/Loading";
+import { SetPage } from "../redux/animeSlice";
 
 function ListAnime() {
   const dispatch = useDispatch();
@@ -15,6 +16,14 @@ function ListAnime() {
     getPageAnime(dispatch, page);
   }, [dispatch, page]);
 
+  const handePage = (e) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    dispatch(SetPage(e));
+  };
+
   if (loading || !animes?.data) {
     return <Loading />;
   }
@@ -22,7 +31,7 @@ function ListAnime() {
     <Wrapper>
       <div className="left">
         <List title={"ALL AINIME"} data={animes?.data} />
-        <Pagination />
+        <Pagination handePage={handePage} page={page} />
       </div>
       <div className="right content">
         <TopEpisodes />

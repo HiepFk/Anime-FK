@@ -10,18 +10,6 @@ export const animeSlice = createSlice({
     error: false,
   },
   reducers: {
-    NextPage: (state) => {
-      return {
-        ...state,
-        page: state.page + 1,
-      };
-    },
-    PrePage: (state) => {
-      return {
-        ...state,
-        page: state.page - 1,
-      };
-    },
     SetPage: (state, action) => {
       return {
         ...state,
@@ -77,8 +65,6 @@ export const animeSlice = createSlice({
 });
 
 export const {
-  NextPage,
-  PrePage,
   SetPage,
   GetAnimesStart,
   GetAnimesSuccess,

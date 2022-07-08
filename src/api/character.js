@@ -6,9 +6,6 @@ import {
   GetCharacterStart,
   GetCharacterSuccess,
   GetCharacterError,
-  NextPage,
-  PrePage,
-  SetPage,
 } from "../redux/characterSlice";
 
 export const getPageCharacter = async (dispatch, page) => {
@@ -16,7 +13,6 @@ export const getPageCharacter = async (dispatch, page) => {
   dispatch(GetCharactersStart());
   try {
     const data = await fetch(link).then((res) => res.json());
-    console.log(data);
     dispatch(GetCharactersSuccess(data));
   } catch (error) {
     dispatch(GetCharactersError());
