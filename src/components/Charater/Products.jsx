@@ -10,7 +10,6 @@ function Products({ title, data, type }) {
       </div>
       <div className="products">
         {data?.map((item, index) => {
-          console.log(item);
           return (
             <div>
               {type === "anime" ? (
