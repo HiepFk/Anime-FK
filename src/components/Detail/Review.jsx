@@ -1,40 +1,42 @@
 import React from "react";
 import styled from "styled-components";
-import img from "../../asset/1.webp";
 
-function Review() {
-  const arr = [0, 1, 2, 3];
+function Review({ data }) {
   return (
     <Wrapper>
       <div className="title">
         <div className="pillar"></div>
         <div className="desc">All REVIEWS</div>
       </div>
-      {arr.map((item) => {
-        return (
-          <div className="review" key={item}>
-            <div className="item">
-              <img src={img} alt="" className="img" />
-            </div>
-            <div className="text">
-              <div className="name">Chris Curry</div>
-              <div className="text_mini">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-                debitis aperiam qui quia, deleniti animi reiciendis, maiores
-                maxime provident fugit dolores nihil veniam, quisquam
-                doloremque! Sequi laboriosam nisi cumque maiores!
+      <div className="wrapper">
+        {data.map((item) => {
+          return (
+            <div className="review" key={item}>
+              <div className="item">
+                <img
+                  src={item?.user?.images?.jpg?.image_url}
+                  alt=""
+                  className="img"
+                />
+              </div>
+              <div className="text">
+                <div className="name">{item?.user?.username}</div>
+
+                <div className="text_mini">Votes : {item?.votes}</div>
+                <div className="text_mini">
+                  Overall : {item?.scores.overall}
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </Wrapper>
   );
 }
 const Wrapper = styled.div`
   color: white;
   margin-top: 2rem;
-  width: 45rem;
   .title {
     display: flex;
     align-items: center;
@@ -51,9 +53,15 @@ const Wrapper = styled.div`
     color: white;
     font-weight: 600;
   }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
   .review {
     display: flex;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
   }
   .item {
     position: relative;
@@ -78,11 +86,14 @@ const Wrapper = styled.div`
     background: #1d1e39;
     padding: 1rem;
     border-radius: 10px;
+    min-width: 13rem;
   }
   .name {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+  }
+  .text_mini {
+    margin-top: 0.5rem;
   }
 `;
 export default Review;

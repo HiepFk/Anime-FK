@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
 import Item from "../Item";
 
-function ListMini({ title, link, data }) {
+function ListMini({ title, link, data, type }) {
   return (
     <Wrapper>
       <div className="title">
@@ -24,6 +24,8 @@ function ListMini({ title, link, data }) {
               key={index}
               image={item?.images?.jpg?.image_url}
               name={item?.title}
+              type={type}
+              id={item?.mal_id}
             />
           );
         })}
@@ -32,7 +34,7 @@ function ListMini({ title, link, data }) {
   );
 }
 const Wrapper = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   .title {
     display: flex;
     align-items: center;
@@ -42,7 +44,7 @@ const Wrapper = styled.div`
   }
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 2.5rem;
     grid-row-gap: 2rem;
   }
@@ -53,12 +55,12 @@ const Wrapper = styled.div`
   }
   .pillar {
     width: 0.25rem;
-    height: 2rem;
+    height: 2.5rem;
     background-color: #e53637;
     margin-right: 1rem;
   }
   .desc {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: white;
     font-weight: 600;
   }

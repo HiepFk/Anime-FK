@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getDetailAnime } from "../api/anime";
+import { getCharacter } from "../api/character";
+import { getReviews } from "../api/review";
+import Loading from "../components/Loading";
 import Info from "../components/Detail/Info";
+import Synopsis from "../components/Detail/Synopsis";
 import Charater from "../components/Detail/Charater";
 import Review from "../components/Detail/Review";
-import TopEpisodes from "../components/TopEpisodes";
-import TopTrailer from "../components/TopTrailer";
+
 function DetailAnime() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { loading, anime } = useSelector((state) => state.anime);
+  const { characters } = useSelector((state) => state.character);
+  const { reviews } = useSelector((state) => state.review);
+  useEffect(() => {
+    getDetailAnime(dispatch, id);
+    getCharacter(dispatch, id, "anime");
+    getReviews(dispatch, id, "anime");
+  }, [dispatch, id]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  const mains = characters?.data?.filter((item) => {
+    return item.role === "Main";
+  });
   return (
     <Wrapper>
-      <Info />
+      <Info anime={anime?.data} />
       <div className="content">
-        <div className="left">
-          <Charater />
-          <Review />
-        </div>
-        <div className="right">
-          <TopEpisodes />
-          <TopTrailer />
-        </div>
+        <Synopsis synopsis={anime?.data?.synopsis} />
+        <Charater data={mains} />
+        <Review data={reviews?.data} />
       </div>
     </Wrapper>
   );
@@ -28,13 +47,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   .content {
     display: flex;
-  }
-  .left {
-    width: calc(100% - 25rem);
-  }
-  .right {
-    margin-left: 3.5rem;
-    height: 100%;
+    flex-direction: column;
   }
 `;
 export default DetailAnime;

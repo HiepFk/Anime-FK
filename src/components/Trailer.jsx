@@ -1,64 +1,72 @@
 import React from "react";
 import styled from "styled-components";
-import { AiFillEye } from "react-icons/ai";
-
-import img from "../asset/4.jpg";
-function Trailer() {
+import { AiFillStar } from "react-icons/ai";
+function Trailer({ data = [""] }) {
   return (
     <Wrapper>
-      <img src={img} alt="" className="img" />
-      <div className="info">
-        <div className="type">
-          <div className="desc_mini">Trailer</div>
-          <div className="desc_mini">Anime</div>
-        </div>
-        <div className="name">One Piece Stampede 2020</div>
-        <div className="view">
-          <AiFillEye className="icon" />
-          <span>999 Viewes</span>
-        </div>
-      </div>
+      {data?.map((item, index) => {
+        return (
+          <div className="container" key={index}>
+            <img src={item?.images?.jpg?.image_url} alt="" className="img" />
+            <div className="info">
+              {item?.rank && (
+                <div className="view">
+                  <AiFillStar className="icon" />
+                  <span>{item?.rank}</span>
+                </div>
+              )}
+              <div className="name">
+                {item?.title ? item?.title : item.name}
+              </div>
+              {item?.name_kanji && (
+                <>
+                  <div className="name mini">{item.name_kanji}</div>
+                </>
+              )}
+            </div>
+          </div>
+        );
+      })}
     </Wrapper>
   );
 }
 const Wrapper = styled.div`
-  display: flex;
-  margin-bottom: 1.5rem;
-
+  max-width: 22rem;
+  .container {
+    display: flex;
+    margin-bottom: 2rem;
+  }
   .img {
     cursor: pointer;
-    height: 8rem;
+    height: 10rem;
   }
   .info {
     margin-left: 1.5rem;
   }
-  .type {
-    display: flex;
-    margin-bottom: 0.75rem;
+  .icon {
+    color: yellow;
   }
-  .desc_mini {
+  .score {
     color: white;
-    background-color: #3c3d55;
-    padding: 0.15rem 0.75rem;
-    margin-right: 1rem;
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
+    font-size: 1rem;
   }
   .name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: white;
-    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+  .mini {
+    font-size: 1rem;
+    margin-top: 1rem;
+    opacity: 0.8;
   }
   .view {
     display: flex;
     align-items: center;
     color: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.2rem;
-    font-size: 0.75rem;
-    opacity: 0.8;
-    transform: translateX(-0.5rem);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
     span {
       margin-left: 0.25rem;
     }

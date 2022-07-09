@@ -14,7 +14,9 @@ function Anime() {
   if (loading || !animes?.data) {
     return <Loading />;
   }
-  return <ListMini title={"ANIME"} link="/animes" data={animes?.data} />;
+  return (
+    <ListMini title={"ANIME"} link="/animes" data={animes?.data} type="anime" />
+  );
 }
 
 export default Anime;

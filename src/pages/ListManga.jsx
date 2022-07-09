@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import List from "../components/List/List";
 import Pagination from "../components/List/Pagination";
-import TopEpisodes from "../components/TopEpisodes";
 import TopTrailer from "../components/TopTrailer";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,11 +10,15 @@ import { SetPage } from "../redux/mangaSlice";
 
 function ListManga() {
   const dispatch = useDispatch();
-
   const { loading, mangas, page } = useSelector((state) => state.manga);
-  useEffect(() => {
-    getPageManga(dispatch, page);
-  }, [dispatch, page]);
+
+  const [text, setText] = useState("");
+
+  const handeSearch = (e) => {
+    e.preventDefault();
+    dispatch(SetPage(1));
+    getPageManga(dispatch, page, text);
+  };
 
   const handePage = (e) => {
     dispatch(SetPage(e));
@@ -24,6 +27,10 @@ function ListManga() {
       behavior: "smooth",
     });
   };
+  useEffect(() => {
+    getPageManga(dispatch, page, text);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, page]);
 
   if (loading || !mangas?.data) {
     return <Loading />;
@@ -31,12 +38,24 @@ function ListManga() {
   return (
     <Wrapper>
       <div className="left">
-        <List title={"ALL MANGA"} data={mangas?.data} />
-        <Pagination handePage={handePage} page={page} />
+        <List
+          title={text ? `Search by ${text}` : "ALL MANGA"}
+          data={mangas?.data}
+          handeSearch={handeSearch}
+          setText={setText}
+          type="manga"
+        />
+        <Pagination
+          handePage={handePage}
+          page={page}
+          maxPage={mangas?.pagination?.last_visible_page}
+        />
       </div>
       <div className="right content">
-        <TopEpisodes />
-        <TopTrailer />
+        <TopTrailer
+          link="https://api.jikan.moe/v4/top/manga?limit=10"
+          title="manga"
+        />
       </div>
     </Wrapper>
   );

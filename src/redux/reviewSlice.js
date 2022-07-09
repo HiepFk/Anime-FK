@@ -1,54 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const animeSlice = createSlice({
-  name: "alert",
+export const reviewSlice = createSlice({
+  name: "review",
   initialState: {
-    anime: {},
-    animes: [],
+    reviews: [],
     loading: false,
     error: false,
   },
   reducers: {
-    GetAnimeStart: (state) => {
+    GetReviewStart: (state) => {
       return {
         ...state,
         loading: true,
         error: false,
       };
     },
-    GetAnimeError: (state) => {
+    GetReviewError: (state) => {
       return {
         ...state,
         loading: false,
         error: true,
       };
     },
-    GetAnimeSuccess: (state, action) => {
+    GetReviewSuccess: (state, action) => {
       return {
         ...state,
-        anime: action.payload,
+        review: action.payload,
         loading: false,
         error: true,
       };
     },
-    GetAnimesStart: (state) => {
+    GetReviewsStart: (state) => {
       return {
         ...state,
         loading: true,
         error: false,
       };
     },
-    GetAnimesError: (state) => {
+    GetReviewsError: (state) => {
       return {
         ...state,
         loading: false,
         error: true,
       };
     },
-    GetAnimesSuccess: (state, action) => {
+    GetReviewsSuccess: (state, action) => {
       return {
         ...state,
-        animes: action.payload,
+        reviews: action.payload,
         loading: false,
         error: true,
       };
@@ -57,11 +56,11 @@ export const animeSlice = createSlice({
 });
 
 export const {
-  GetAnimesStart,
-  GetAnimesSuccess,
-  GetAnimesError,
-  GetAnimeStart,
-  GetAnimeSuccess,
-  GetAnimeError,
-} = animeSlice.actions;
-export default animeSlice.reducer;
+  GetReviewStart,
+  GetReviewSuccess,
+  GetReviewError,
+  GetReviewsStart,
+  GetReviewsSuccess,
+  GetReviewsError,
+} = reviewSlice.actions;
+export default reviewSlice.reducer;

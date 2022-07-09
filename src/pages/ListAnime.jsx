@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import List from "../components/List/List";
 import Pagination from "../components/List/Pagination";
-import TopEpisodes from "../components/TopEpisodes";
 import TopTrailer from "../components/TopTrailer";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,9 +11,13 @@ import { SetPage } from "../redux/animeSlice";
 function ListAnime() {
   const dispatch = useDispatch();
   const { loading, animes, page } = useSelector((state) => state.anime);
-  useEffect(() => {
-    getPageAnime(dispatch, page);
-  }, [dispatch, page]);
+  const [text, setText] = useState("");
+
+  const handeSearch = (e) => {
+    e.preventDefault();
+    dispatch(SetPage(1));
+    getPageAnime(dispatch, page, text);
+  };
 
   const handePage = (e) => {
     window.scrollTo({
@@ -24,18 +27,35 @@ function ListAnime() {
     dispatch(SetPage(e));
   };
 
+  useEffect(() => {
+    getPageAnime(dispatch, page, text);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, page]);
+
   if (loading || !animes?.data) {
     return <Loading />;
   }
   return (
     <Wrapper>
       <div className="left">
-        <List title={"ALL AINIME"} data={animes?.data} />
-        <Pagination handePage={handePage} page={page} />
+        <List
+          title={text ? `Search by ${text}` : "ALL AINIME"}
+          data={animes?.data}
+          handeSearch={handeSearch}
+          setText={setText}
+          type="anime"
+        />
+        <Pagination
+          handePage={handePage}
+          page={page}
+          maxPage={animes?.pagination?.last_visible_page}
+        />
       </div>
       <div className="right content">
-        <TopEpisodes />
-        <TopTrailer />
+        <TopTrailer
+          link="https://api.jikan.moe/v4/top/anime?limit=10"
+          title="anime"
+        />
       </div>
     </Wrapper>
   );

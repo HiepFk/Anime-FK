@@ -3,6 +3,8 @@ import animeReducer from "./animeSlice";
 import mangaReducer from "./mangaSlice";
 import peopleReducer from "./peopleSlice";
 import characterReducer from "./characterSlice";
+import reviewReducer from "./reviewSlice";
+import topReducer from "./topSlice";
 import {
   persistStore,
   persistReducer,
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
   manga: mangaReducer,
   people: peopleReducer,
   character: characterReducer,
+  review: reviewReducer,
+  top: topReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

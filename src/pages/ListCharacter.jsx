@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import List from "../components/List/List";
 import Pagination from "../components/List/Pagination";
-import TopEpisodes from "../components/TopEpisodes";
 import TopTrailer from "../components/TopTrailer";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { getPageCharacter } from "../api/character";
+import { getListCharacter } from "../api/character";
 import Loading from "../components/Loading";
 import { SetPage } from "../redux/characterSlice";
 
@@ -13,9 +12,13 @@ function ListCharacter() {
   const dispatch = useDispatch();
   const { loading, characters, page } = useSelector((state) => state.character);
 
-  useEffect(() => {
-    getPageCharacter(dispatch, page);
-  }, [dispatch, page]);
+  const [text, setText] = useState("");
+
+  const handeSearch = (e) => {
+    e.preventDefault();
+    dispatch(SetPage(1));
+    getListCharacter(dispatch, page, text);
+  };
 
   const handePage = (e) => {
     dispatch(SetPage(e));
@@ -25,18 +28,35 @@ function ListCharacter() {
     });
   };
 
+  useEffect(() => {
+    getListCharacter(dispatch, page, text);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, page]);
+
   if (loading || !characters?.data) {
     return <Loading />;
   }
   return (
     <Wrapper>
       <div className="left">
-        <List title={"ALL CHARATER"} data={characters?.data} />
-        <Pagination handePage={handePage} page={page} />
+        <List
+          title={text ? `Search by ${text}` : "ALL CHARATER"}
+          data={characters?.data}
+          handeSearch={handeSearch}
+          setText={setText}
+          type="character"
+        />
+        <Pagination
+          handePage={handePage}
+          page={page}
+          maxPage={characters?.pagination?.last_visible_page}
+        />
       </div>
       <div className="right content">
-        <TopEpisodes />
-        <TopTrailer />
+        <TopTrailer
+          link="https://api.jikan.moe/v4/top/characters?limit=10"
+          title="character"
+        />
       </div>
     </Wrapper>
   );

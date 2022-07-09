@@ -12,7 +12,7 @@ import {
 // const api = `https://api.jikan.moe/v4/anime?page=1&q=`;
 
 export const getAnimeHomePage = async (dispatch) => {
-  let link = `https://api.jikan.moe/v4/anime?limit=9`;
+  let link = `https://api.jikan.moe/v4/anime?limit=12`;
   dispatch(GetAnimesStart());
   try {
     const data = await fetch(link).then((res) => res.json());
@@ -22,8 +22,8 @@ export const getAnimeHomePage = async (dispatch) => {
   }
 };
 
-export const getPageAnime = async (dispatch, page) => {
-  let link = `https://api.jikan.moe/v4/anime?page=${page}`;
+export const getPageAnime = async (dispatch, page, text = "") => {
+  let link = `https://api.jikan.moe/v4/anime?page=${page}&q=${text}`;
   dispatch(GetAnimesStart());
   try {
     const data = await fetch(link).then((res) => res.json());
@@ -37,20 +37,9 @@ export const getDetailAnime = async (dispatch, id) => {
   let link = `https://api.jikan.moe/v4/anime/${id}/full`;
   dispatch(GetAnimeStart());
   try {
-    const res = await axios.get(link);
-    dispatch(GetAnimeSuccess(res.data));
+    const data = await fetch(link).then((res) => res.json());
+    dispatch(GetAnimeSuccess(data));
   } catch (error) {
     dispatch(GetAnimeError());
-  }
-};
-
-export const GetAnimeBySearch = async (dispatch, text) => {
-  let link = `https://api.jikan.moe/v4/anime?page=1&q=${text}`;
-  dispatch(GetAnimesStart());
-  try {
-    const res = await axios.get(link);
-    dispatch(GetAnimesSuccess(res.data));
-  } catch (error) {
-    dispatch(GetAnimesError());
   }
 };

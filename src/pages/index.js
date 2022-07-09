@@ -5,7 +5,6 @@ import ListCharacter from "./ListCharacter";
 import DetailAnime from "./DetailAnime";
 import DetailManga from "./DetailManga";
 import DetailCharacter from "./DetailCharacter";
-import AnimeWatching from "./AnimeWatching";
 export {
   Home,
   ListAnime,
@@ -14,5 +13,4 @@ export {
   DetailAnime,
   DetailManga,
   DetailCharacter,
-  AnimeWatching,
 };

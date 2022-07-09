@@ -14,7 +14,9 @@ function Manga() {
   if (loading || !mangas?.data) {
     return <Loading />;
   }
-  return <ListMini title={"MANGA"} link="mangas" data={mangas?.data} />;
+  return (
+    <ListMini title={"MANGA"} link="mangas" data={mangas?.data} type="manga" />
+  );
 }
 
 export default Manga;

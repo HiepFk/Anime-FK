@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AiFillEye } from "react-icons/ai";
 
-function Item({ name, image }) {
+function Item({ name, image, type, id }) {
   return (
     <Wrapper>
       <div
@@ -12,19 +12,25 @@ function Item({ name, image }) {
           background: `url(${image}) no-repeat center center /cover`,
         }}
       >
-        {name === "Luffy Monkey D" ? (
-          <Link to={`/charaters/1`} className="container">
+        {type === "anime" && (
+          <Link to={`/animes/${id}`} className="container">
             <AiFillEye className="icon" />
           </Link>
-        ) : (
-          <Link to={`/animes/1`} className="container">
+        )}
+        {type === "character" && (
+          <Link to={`/characters/${id}`} className="container">
+            <AiFillEye className="icon" />
+          </Link>
+        )}
+        {type === "manga" && (
+          <Link to={`/mangas/${id}`} className="container">
             <AiFillEye className="icon" />
           </Link>
         )}
       </div>
       <div className="active">
         <div className="desc_mini">Active</div>
-        <div className="desc_mini">Best</div>
+        <div className="desc_mini">{type}</div>
       </div>
       <div className="name">{name}</div>
     </Wrapper>
@@ -73,10 +79,11 @@ const Wrapper = styled.div`
     margin-right: 1rem;
     font-size: 0.75rem;
     border-radius: 0.5rem;
+    text-transform: capitalize;
   }
   .name {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
   }
 `;

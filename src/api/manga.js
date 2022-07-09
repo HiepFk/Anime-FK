@@ -8,11 +8,8 @@ import {
   GetMangaError,
 } from "../redux/mangaSlice";
 
-// axios.defaults.withCredentials = true;
-// const api = `https://api.jikan.moe/v4/anime?page=1&q=`;
-
 export const getMangaHomePage = async (dispatch) => {
-  let link = `https://api.jikan.moe/v4/manga?limit=9`;
+  let link = `https://api.jikan.moe/v4/manga?limit=12`;
   dispatch(GetMangasStart());
   try {
     const data = await fetch(link).then((res) => res.json());
@@ -22,8 +19,8 @@ export const getMangaHomePage = async (dispatch) => {
   }
 };
 
-export const getPageManga = async (dispatch, page) => {
-  let link = `https://api.jikan.moe/v4/manga?page=${page}`;
+export const getPageManga = async (dispatch, page, text = "") => {
+  let link = `https://api.jikan.moe/v4/manga?page=${page}&q=${text}`;
   dispatch(GetMangasStart());
   try {
     const data = await fetch(link).then((res) => res.json());
@@ -37,20 +34,9 @@ export const getDetailManga = async (dispatch, id) => {
   let link = `https://api.jikan.moe/v4/manga/${id}/full`;
   dispatch(GetMangaStart());
   try {
-    const res = await axios.get(link);
-    dispatch(GetMangaSuccess(res.data));
+    const data = await fetch(link).then((res) => res.json());
+    dispatch(GetMangaSuccess(data));
   } catch (error) {
     dispatch(GetMangaError());
-  }
-};
-
-export const GetMangaBySearch = async (dispatch, text) => {
-  let link = `https://api.jikan.moe/v4/manga?page=1&q=${text}`;
-  dispatch(GetMangasStart());
-  try {
-    const res = await axios.get(link);
-    dispatch(GetMangasSuccess(res.data));
-  } catch (error) {
-    dispatch(GetMangasError());
   }
 };

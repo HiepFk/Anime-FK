@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import styled from "styled-components";
-function Pagination({ handePage, page }) {
+function Pagination({ handePage, page, maxPage }) {
   const handeCheck = (e) => {
     handePage(e.selected + 1);
   };
@@ -10,7 +10,7 @@ function Pagination({ handePage, page }) {
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
-        pageCount={25}
+        pageCount={maxPage}
         pageRangeDisplayed={1}
         marginPagesDisplayed={1}
         onPageChange={handeCheck}

@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getTop } from "../api/top";
 import styled from "styled-components";
 import Trailer from "./Trailer";
-function TopTrailer() {
-  const arr = [0, 1, 2, 3, 4];
+import Loading from "./Loading";
 
+function TopTrailer({ link, title }) {
+  const dispatch = useDispatch();
+  const { loading, data } = useSelector((state) => state.top);
+
+  useEffect(() => {
+    getTop(dispatch, link);
+  }, [dispatch, link]);
+
+  console.log(data);
+  if (loading || !data?.data) {
+    return <Loading />;
+  }
   return (
     <Wrapper>
       <div className="title">
         <div className="pillar"></div>
-        <div className="desc">Top Trailer</div>
+        <div className="desc">Top {title}</div>
       </div>
-      {arr.map((item) => {
-        return <Trailer key={item} />;
-      })}
+      <Trailer data={data?.data} />;
     </Wrapper>
   );
 }

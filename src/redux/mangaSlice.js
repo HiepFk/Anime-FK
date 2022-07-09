@@ -16,7 +16,7 @@ export const mangaSlice = createSlice({
         page: action.payload,
       };
     },
-    MangaStart: (state) => {
+    GetMangaStart: (state) => {
       return {
         ...state,
         loading: true,

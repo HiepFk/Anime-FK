@@ -1,19 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 function Video() {
+  const location = useLocation();
+  const data = location.state;
+  console.log(data);
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return (
     <Wrapper>
-      <iframe
+      {/* <iframe
         width="100%"
         height="580"
-        src="https://www.youtube.com/embed/qig4KOK2R2g"
+        src={`https://www.youtube.com/embed/${data?.youtube_id}`}
         title="Cowboy Bebop - Japanese Blu-ray Trailer [HD]"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
-      />
+      /> */}
+      <iframe
+        width="100%"
+        height="580"
+        src="https://www.youtube.com/embed/Py9paavgZ-0?list=RDPy9paavgZ-0"
+        title="Axwell Λ Ingrosso - More Than You Know Visual EP (Official Video)"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
       <div className="title">
         <div className="pillar"></div>
         <div className="desc">LIST VIDEO</div>
@@ -31,6 +44,7 @@ function Video() {
   );
 }
 const Wrapper = styled.div`
+  padding: 2rem 12rem;
   .title {
     display: flex;
     align-items: center;

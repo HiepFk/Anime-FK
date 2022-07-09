@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Item from "../Item";
 import { FiSearch } from "react-icons/fi";
 
-function ListMini({ title, data }) {
+function ListMini({ title, data, handeSearch, setText, type }) {
   return (
     <Wrapper>
       <div className="title">
@@ -11,8 +11,14 @@ function ListMini({ title, data }) {
           <div className="pillar"></div>
           <div className="desc">{title}</div>
         </div>
-        <form className="right">
-          <input type="text" name="text" id="text" className="input" />
+        <form className="right" onSubmit={handeSearch}>
+          <input
+            type="text"
+            name="text"
+            id="text"
+            className="input"
+            onChange={(e) => setText(e.target.value)}
+          />
           <label htmlFor="text">
             <FiSearch className="icon" />
           </label>
@@ -25,6 +31,8 @@ function ListMini({ title, data }) {
               key={index}
               image={item?.images?.jpg?.image_url}
               name={item?.title ? item?.title : item?.name}
+              type={type}
+              id={item?.mal_id}
             />
           );
         })}
