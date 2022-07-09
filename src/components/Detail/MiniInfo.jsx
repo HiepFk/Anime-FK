@@ -67,8 +67,8 @@ function MiniInfo({ anime }) {
 
       <div className="container">
         <span className="opacity">genres:</span>
-        {anime?.genres.map((item) => {
-          return <p>{item?.name},</p>;
+        {anime?.genres.map((item, index) => {
+          return <p key={index}>{item?.name},</p>;
         })}
       </div>
     </>

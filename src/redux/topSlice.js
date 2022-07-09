@@ -6,8 +6,12 @@ export const topSlice = createSlice({
     data: [],
     loading: false,
     error: false,
+    header: 1,
   },
   reducers: {
+    SetHeader: (state, action) => {
+      return { ...state, header: action.payload };
+    },
     GetTopStart: (state) => {
       return {
         ...state,
@@ -33,5 +37,6 @@ export const topSlice = createSlice({
   },
 });
 
-export const { GetTopStart, GetTopSuccess, GetTopError } = topSlice.actions;
+export const { GetTopStart, GetTopSuccess, GetTopError, SetHeader } =
+  topSlice.actions;
 export default topSlice.reducer;

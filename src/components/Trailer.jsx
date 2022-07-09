@@ -1,12 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import { AiFillStar } from "react-icons/ai";
-function Trailer({ data = [""] }) {
+function Trailer({ data = [""], title }) {
   return (
     <Wrapper>
       {data?.map((item, index) => {
         return (
-          <div className="container" key={index}>
+          <Link
+            to={`/${title}s/${item?.mal_id}`}
+            className="container"
+            key={index}
+          >
             <img src={item?.images?.jpg?.image_url} alt="" className="img" />
             <div className="info">
               {item?.rank && (
@@ -24,7 +30,7 @@ function Trailer({ data = [""] }) {
                 </>
               )}
             </div>
-          </div>
+          </Link>
         );
       })}
     </Wrapper>

@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Item from "../Item";
-function Products({ title, name, img }) {
-  const arr = [1, 2, 3, 4, 5, 6];
+function Products({ title, data, type }) {
   return (
     <Wrapper>
       <div className="title">
@@ -10,8 +9,33 @@ function Products({ title, name, img }) {
         <div className="desc">{title}</div>
       </div>
       <div className="products">
-        {arr.map((item) => {
-          return <Item key={item} name={name} image={img} />;
+        {data?.map((item, index) => {
+          console.log(item);
+          return (
+            <div>
+              {type === "anime" ? (
+                <>
+                  <Item
+                    key={index}
+                    image={item?.anime?.images?.jpg?.image_url}
+                    name={item?.anime?.title}
+                    type={type}
+                    id={item?.anime?.mal_id}
+                  />
+                </>
+              ) : (
+                <>
+                  <Item
+                    key={index}
+                    image={item?.manga?.images?.jpg?.image_url}
+                    name={item?.manga?.title}
+                    type={type}
+                    id={item?.manga?.mal_id}
+                  />
+                </>
+              )}
+            </div>
+          );
         })}
       </div>
     </Wrapper>

@@ -60,7 +60,7 @@ function Slide() {
                 }
                 key={item.id}
                 onClick={() => setIndex(item.id - 1)}
-              ></div>
+              />
             );
           })}
         </div>

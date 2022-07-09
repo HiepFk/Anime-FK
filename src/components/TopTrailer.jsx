@@ -13,7 +13,6 @@ function TopTrailer({ link, title }) {
     getTop(dispatch, link);
   }, [dispatch, link]);
 
-  console.log(data);
   if (loading || !data?.data) {
     return <Loading />;
   }
@@ -23,7 +22,7 @@ function TopTrailer({ link, title }) {
         <div className="pillar"></div>
         <div className="desc">Top {title}</div>
       </div>
-      <Trailer data={data?.data} />;
+      <Trailer data={data?.data} title={title} />;
     </Wrapper>
   );
 }

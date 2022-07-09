@@ -7,18 +7,18 @@ export const data = [
     id: 1,
     name: "Cowboy Bebop ",
     url: cowboy,
-    link: "1",
+    link: "/animes/1",
   },
   {
     id: 2,
     name: "Berserk",
     url: berserk,
-    link: "1",
+    link: "animes/32379",
   },
   {
     id: 3,
     name: "Once pice",
     url: oncepice,
-    link: "1",
+    link: "animes/21",
   },
 ];

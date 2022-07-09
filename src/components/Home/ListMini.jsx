@@ -18,7 +18,7 @@ function ListMini({ title, link, data, type }) {
         </Link>
       </div>
       <div className="wrapper">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <Item
               key={index}

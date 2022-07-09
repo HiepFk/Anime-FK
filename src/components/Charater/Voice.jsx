@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import img from "../../asset/5.jpg";
 
-function Voice() {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
+function Voice({ data = [] }) {
   return (
     <Wrapper>
       <div className="title">
@@ -12,13 +9,17 @@ function Voice() {
         <div className="desc">VOICE</div>
       </div>
       <div className="voice">
-        {arr.map((item) => {
+        {data?.map((item, index) => {
           return (
-            <div className="item" key={item}>
-              <img src={img} alt="" className="img" />
+            <div className="item" key={index}>
+              <img
+                src={item?.person?.images?.jpg?.image_url}
+                alt=""
+                className="img"
+              />
               <div className="info">
-                <div className="name">Lufy</div>
-                <div className="country">Japan</div>
+                <div className="name">{item?.person?.name}</div>
+                <div className="country">{item?.language}</div>
               </div>
             </div>
           );
@@ -48,16 +49,16 @@ const Wrapper = styled.div`
   }
   .voice {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 2rem;
-    grid-row-gap: 1.25rem;
+    grid-row-gap: 1.5rem;
   }
   .item {
     margin-left: 1rem;
     display: flex;
   }
   .img {
-    height: 5rem;
+    height: 8rem;
     margin-right: 1rem;
     border-radius: 2px;
   }

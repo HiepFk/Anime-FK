@@ -25,7 +25,7 @@ function ListMini({ title, data, handeSearch, setText, type }) {
         </form>
       </div>
       <div className="wrapper">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <Item
               key={index}

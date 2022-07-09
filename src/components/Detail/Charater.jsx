@@ -10,7 +10,7 @@ function Charater({ data = [] }) {
         <div className="desc">CHARATERS</div>
       </div>
       <div className="container">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           return (
             <Link
               to={`/characters/${item?.character?.mal_id}`}
@@ -58,6 +58,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-right: 2.5rem;
+    margin-bottom: 1.5rem;
     color: white;
   }
   .img {

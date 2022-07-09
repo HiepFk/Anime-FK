@@ -4,8 +4,8 @@ import { useLocation } from "react-router-dom";
 
 function Video() {
   const location = useLocation();
+  // eslint-disable-next-line no-unused-vars
   const data = location.state;
-  console.log(data);
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return (
     <Wrapper>

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { SetHeader } from "../redux/topSlice";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../asset/logo.png";
@@ -6,7 +8,8 @@ import { menu } from "../utils/link";
 import { RiContactsFill } from "react-icons/ri";
 
 function Header() {
-  const [index, setIndex] = useState(1);
+  const dispatch = useDispatch();
+  const header = useSelector((state) => state.top.header);
   return (
     <Wrapper>
       <Link to={"/"}>
@@ -17,9 +20,9 @@ function Header() {
           return (
             <Link
               to={item.url}
-              className={index === item.id ? "item active" : "item"}
+              className={header === item.id ? "item active" : "item"}
               key={item.id}
-              onClick={() => setIndex(item.id)}
+              onClick={() => dispatch(SetHeader(item.id))}
             >
               {item.title}
             </Link>

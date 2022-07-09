@@ -40,8 +40,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   .img {
-    height: 20rem;
-    border-radius: 0.5rem;
+    height: 25rem;
+    border-radius: 0.3rem;
     position: relative;
   }
   .container {

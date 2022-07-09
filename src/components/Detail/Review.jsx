@@ -9,9 +9,9 @@ function Review({ data }) {
         <div className="desc">All REVIEWS</div>
       </div>
       <div className="wrapper">
-        {data.map((item) => {
+        {data?.map((item, index) => {
           return (
-            <div className="review" key={item}>
+            <div className="review" key={index}>
               <div className="item">
                 <img
                   src={item?.user?.images?.jpg?.image_url}
@@ -24,7 +24,7 @@ function Review({ data }) {
 
                 <div className="text_mini">Votes : {item?.votes}</div>
                 <div className="text_mini">
-                  Overall : {item?.scores.overall}
+                  Overall : {item?.scores?.overall}
                 </div>
               </div>
             </div>
