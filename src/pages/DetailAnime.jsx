@@ -23,6 +23,13 @@ function DetailAnime() {
     getReviews(dispatch, id, "anime");
   }, [dispatch, id]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   if (loading) {
     return <Loading />;
   }
@@ -48,6 +55,12 @@ const Wrapper = styled.div`
   .content {
     display: flex;
     flex-direction: column;
+  }
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    padding: 0rem 3rem;
   }
 `;
 export default DetailAnime;

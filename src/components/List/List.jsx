@@ -41,6 +41,11 @@ function ListMini({ title, data, handeSearch, setText, type }) {
   );
 }
 const Wrapper = styled.div`
+  @media (max-width: 600px) {
+    .wrapper {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+  }
   margin-bottom: 3rem;
   .title {
     display: flex;

@@ -37,6 +37,12 @@ function Trailer({ data = [""], title }) {
   );
 }
 const Wrapper = styled.div`
+  @media (max-width: 1300px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2.5rem;
+    grid-row-gap: 2rem;
+  }
   max-width: 22rem;
   .container {
     display: flex;

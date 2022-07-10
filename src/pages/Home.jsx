@@ -15,9 +15,11 @@ function Home() {
   );
 }
 const Wrapper = styled.div`
-  @media (max-width: 768px) {
-    padding: 0rem;
-    flex-direction: column;
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    padding: 0rem 3rem;
   }
   padding: 0rem 12rem;
   display: flex;

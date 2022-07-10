@@ -42,7 +42,7 @@ function Slide() {
       >
         <div className="name">{data[index].name}</div>
         <Link to={data[index].link} className="btn">
-          Check Now
+          CHECK NOW
         </Link>
 
         <div className="left button" onClick={prePage}>
@@ -70,6 +70,16 @@ function Slide() {
 }
 
 const Wrapper = styled.div`
+  @media (max-width: 600px) {
+    padding: 0.5rem 2.5rem;
+    .btn,
+    .name {
+      left: 2rem !important;
+    }
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    padding: 0rem 3rem;
+  }
   padding: 3rem 12rem;
   .container {
     height: 35rem;

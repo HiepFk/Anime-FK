@@ -16,6 +16,13 @@ function DetailCharacter() {
   const { character, loading } = useSelector((state) => state.character);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  useEffect(() => {
     getDetailCharacter(dispatch, id);
   }, [dispatch, id]);
 
@@ -39,5 +46,11 @@ function DetailCharacter() {
 }
 const Wrapper = styled.div`
   padding: 3rem 12rem;
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    padding: 0rem 3rem;
+  }
 `;
 export default DetailCharacter;

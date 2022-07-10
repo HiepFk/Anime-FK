@@ -27,6 +27,14 @@ function ListManga() {
       behavior: "smooth",
     });
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   useEffect(() => {
     getPageManga(dispatch, page, text);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,6 +78,22 @@ const Wrapper = styled.div`
   .right {
     margin-left: 3.5rem;
     height: 100%;
+  }
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    padding: 0rem 3rem;
+  }
+  @media (max-width: 1300px) {
+    flex-direction: column;
+    .left,
+    .right {
+      width: 100%;
+    }
+    .right {
+      margin-left: 0rem;
+    }
   }
 `;
 export default ListManga;

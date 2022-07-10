@@ -54,4 +54,5 @@ button {
 }
 .app {
   background-color: #0b0c2a;
+  position: relative;
 }

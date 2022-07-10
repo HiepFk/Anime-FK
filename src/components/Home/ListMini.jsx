@@ -42,12 +42,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     margin-bottom: 1rem;
   }
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 2.5rem;
-    grid-row-gap: 2rem;
-  }
+
   .left,
   .right {
     display: flex;
@@ -73,6 +68,22 @@ const Wrapper = styled.div`
     color: white;
     font-size: 1.5rem;
     margin-left: 1rem;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 2.5rem;
+    grid-row-gap: 2rem;
+  }
+  @media (max-width: 600px) {
+    .wrapper {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    .wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 `;
 export default ListMini;

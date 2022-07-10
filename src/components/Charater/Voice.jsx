@@ -67,6 +67,16 @@ const Wrapper = styled.div`
     font-size: 0.8rem;
     margin-top: 0.5rem;
   }
+  @media (max-width: 600px) {
+    .voice {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  @media (max-width: 1080px) and (min-width: 600px) {
+    .voice {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 `;
 
 export default Voice;

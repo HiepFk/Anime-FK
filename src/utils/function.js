@@ -3,10 +3,10 @@ export const split = (value, arr1, arr2) => {
   const indx = test?.indexOf("");
 
   test?.forEach((item, index) => {
-    if (index < indx && item?.length < 100) {
+    if (index < indx && item?.length < 150) {
       arr1?.push(item);
     }
-    if (index > indx || item?.length >= 100) {
+    if (index > indx || item?.length >= 150) {
       arr2?.push(item);
     }
   });

@@ -32,12 +32,17 @@ function Footer() {
 const Wrapper = styled.div`
   margin-top: 2rem;
   position: relative;
+  left: 0;
+  bottom: 0;
   background-color: #070720;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 12rem;
+  @media (max-width: 768px) {
+    padding: 1.5rem 2rem;
+  }
   .footer {
     color: white;
     font-size: 1rem;
@@ -45,7 +50,7 @@ const Wrapper = styled.div`
   .top {
     position: absolute;
     top: -1.5rem;
-    left: calc(50% - 3rem);
+    left: calc(50% - 1.5rem);
     background-color: #e53637;
     width: 3rem;
     height: 3rem;

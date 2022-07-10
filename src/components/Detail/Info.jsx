@@ -37,14 +37,26 @@ function Info({ anime }) {
         <div className="wrapper">
           <MiniInfo anime={anime} />
         </div>
-        <Link to={`/animes/${anime?.mal_id}/video`} state={anime?.trailer}>
-          <div className="btn">WATCH NOW</div>
-        </Link>
+        {anime?.type === "TV" && (
+          <Link
+            to={`/animes/${anime?.mal_id}/video`}
+            state={anime?.trailer}
+            type={anime?.type}
+          >
+            <div className="btn">WATCH NOW</div>
+          </Link>
+        )}
       </div>
     </Wrapper>
   );
 }
 const Wrapper = styled.div`
+  @media (max-width: 768px) {
+    flex-direction: column;
+    .right {
+      margin-top: 2rem;
+    }
+  }
   display: flex;
   color: white;
   width: 100%;

@@ -27,6 +27,12 @@ function Info({ data, arr1 }) {
   );
 }
 const Wrapper = styled.div`
+  @media (max-width: 990px) {
+    flex-direction: column;
+    .img {
+      width: 20rem;
+    }
+  }
   display: flex;
   color: white;
   .img {

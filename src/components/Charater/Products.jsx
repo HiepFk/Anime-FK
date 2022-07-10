@@ -65,5 +65,15 @@ const Wrapper = styled.div`
     grid-column-gap: 2rem;
     grid-row-gap: 1.25rem;
   }
+  @media (max-width: 600px) {
+    .products {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  @media (max-width: 1080px) and (min-width: 600px) {
+    .products {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 `;
 export default Products;

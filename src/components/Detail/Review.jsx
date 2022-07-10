@@ -35,6 +35,11 @@ function Review({ data }) {
   );
 }
 const Wrapper = styled.div`
+  @media (max-width: 768px) {
+    .review {
+      margin-right: 1rem !important;
+    }
+  }
   color: white;
   margin-top: 2rem;
   .title {
