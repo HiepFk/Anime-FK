@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SetHeader } from "../redux/topSlice";
 import { Link } from "react-router-dom";
@@ -13,9 +13,15 @@ function Header() {
   const header = useSelector((state) => state.top?.header);
   const [active, setActive] = useState(false);
 
+  const pathname = window.location.pathname;
+  useEffect(() => {
+    if (pathname === "/") {
+      dispatch(SetHeader(1));
+    }
+  }, [dispatch, pathname]);
   return (
     <Wrapper>
-      <Link to={"/"}>
+      <Link to={"/"} onClick={() => dispatch(SetHeader(1))}>
         <img src={logo} alt="" className="img" />
       </Link>
       <div className="fixed">
