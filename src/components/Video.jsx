@@ -45,6 +45,15 @@ function Video() {
   );
 }
 const Wrapper = styled.div`
+  @media (max-width: 600px) {
+    padding: 1rem;
+    .item {
+      width: 4.63rem !important;
+    }
+  }
+  @media (max-width: 992px) and (min-width: 600px) {
+    padding: 0rem 3rem;
+  }
   padding: 2rem 12rem;
   .title {
     display: flex;

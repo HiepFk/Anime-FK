@@ -10,8 +10,9 @@ import { AiOutlineClose } from "react-icons/ai";
 
 function Header() {
   const dispatch = useDispatch();
-  const header = useSelector((state) => state.top.header);
+  const header = useSelector((state) => state.top?.header);
   const [active, setActive] = useState(false);
+
   return (
     <Wrapper>
       <Link to={"/"}>

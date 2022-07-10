@@ -49,11 +49,13 @@ export let persistor = persistStore(store);
 // import mangaReducer from "./mangaSlice";
 // import peopleReducer from "./peopleSlice";
 // import characterReducer from "./characterSlice";
+// import topReducer from "./topSlice";
 // export default configureStore({
 //   reducer: {
 //     anime: animeReducer,
 //     manga: mangaReducer,
 //     people: peopleReducer,
 //     character: characterReducer,
+//     top: topReducer,
 //   },
 // });
