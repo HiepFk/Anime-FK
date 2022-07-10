@@ -8,8 +8,8 @@ function Pagination({ handePage, page, maxPage }) {
   return (
     <Wrapper>
       <ReactPaginate
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
+        previousLabel={"<"}
+        nextLabel={">"}
         pageCount={maxPage}
         pageRangeDisplayed={1}
         marginPagesDisplayed={1}

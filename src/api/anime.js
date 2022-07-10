@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   GetAnimesStart,
   GetAnimesSuccess,
@@ -7,9 +6,6 @@ import {
   GetAnimeSuccess,
   GetAnimeError,
 } from "../redux/animeSlice";
-
-// axios.defaults.withCredentials = true;
-// const api = `https://api.jikan.moe/v4/anime?page=1&q=`;
 
 export const getAnimeHomePage = async (dispatch) => {
   let link = `https://api.jikan.moe/v4/anime?limit=12`;

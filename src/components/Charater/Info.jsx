@@ -65,7 +65,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     padding-left: 1.5rem;
-    min-width: 25rem;
+    min-width: 20rem;
     margin-top: 1rem;
     ::before {
       content: "";

@@ -21,14 +21,25 @@ function Header() {
         <div className={active ? "menu menu_active" : "menu"}>
           {menu.map((item) => {
             return (
-              <Link
-                to={item.url}
-                className={header === item.id ? "item active" : "item"}
-                key={item.id}
-                onClick={() => dispatch(SetHeader(item.id))}
-              >
-                {item.title}
-              </Link>
+              <>
+                {item.id === 5 && (
+                  <a href={item.url} className="item">
+                    {item.title}
+                  </a>
+                )}
+                {item.id < 5 && (
+                  <>
+                    <Link
+                      to={item.url}
+                      className={header === item.id ? "item active" : "item"}
+                      key={item.id}
+                      onClick={() => dispatch(SetHeader(item.id))}
+                    >
+                      {item.title}
+                    </Link>
+                  </>
+                )}
+              </>
             );
           })}
         </div>
@@ -86,8 +97,8 @@ const Wrapper = styled.div`
   @media (max-width: 990px) {
     .item {
       color: black;
-      margin-bottom: 2rem;
       margin-left: 0rem;
+      margin-top: 3rem;
     }
     .menu {
       position: fixed;
@@ -100,7 +111,7 @@ const Wrapper = styled.div`
       flex-direction: column;
       align-items: center;
       transform: translateX(-100%);
-      transition: transform 0.5s ease-in;
+      transition: transform 0.25s ease-in;
       z-index: 99000;
     }
     .menu_active {

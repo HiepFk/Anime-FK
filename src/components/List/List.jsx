@@ -45,6 +45,12 @@ const Wrapper = styled.div`
     .wrapper {
       grid-template-columns: repeat(1, 1fr) !important;
     }
+    .title {
+      flex-direction: column;
+    }
+    .right {
+      margin-top: 1rem;
+    }
   }
   margin-bottom: 3rem;
   .title {
