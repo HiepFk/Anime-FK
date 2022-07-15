@@ -7,9 +7,10 @@ import {
   GetCharacterSuccess,
   GetCharacterError,
 } from "../redux/characterSlice";
+const localLink = process.env.REACT_APP_API_LINK;
 
 export const getCharacter = async (dispatch, id, type) => {
-  let link = `https://api.jikan.moe/v4/${type}/${id}/characters`;
+  let link = `${localLink}/${type}/${id}/characters`;
   dispatch(GetCharactersStart());
   try {
     const data = await fetch(link).then((res) => res.json());
@@ -20,7 +21,7 @@ export const getCharacter = async (dispatch, id, type) => {
 };
 
 export const getDetailCharacter = async (dispatch, id) => {
-  let link = `https://api.jikan.moe/v4/characters/${id}/full`;
+  let link = `${localLink}/characters/${id}/full`;
   dispatch(GetCharacterStart());
   try {
     const res = await axios.get(link);

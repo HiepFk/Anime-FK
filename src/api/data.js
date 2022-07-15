@@ -6,9 +6,10 @@ import {
   GetDataSuccess,
   GetDataError,
 } from "../redux/dataSlice";
+const localLink = process.env.REACT_APP_API_LINK;
 
 export const getPageData = async (dispatch, page, text = "", type) => {
-  let link = `https://api.jikan.moe/v4/${type}?page=${page}&q=${text}`;
+  let link = `${localLink}/${type}?page=${page}&q=${text}`;
   dispatch(GetDatasStart());
   try {
     const data = await fetch(link).then((res) => res.json());
@@ -19,7 +20,7 @@ export const getPageData = async (dispatch, page, text = "", type) => {
 };
 
 export const getDetailData = async (dispatch, id, type) => {
-  let link = `https://api.jikan.moe/v4/${type}/${id}/full`;
+  let link = `${localLink}/${type}/${id}/full`;
   dispatch(GetDataStart());
   try {
     const data = await fetch(link).then((res) => res.json());

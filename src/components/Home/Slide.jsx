@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -6,6 +7,7 @@ import { data } from "../../utils/slide";
 
 function Slide() {
   const [index, setIndex] = useState(0);
+
   const nextPage = () => {
     setIndex((preValue) => {
       let newValue = preValue + 1;

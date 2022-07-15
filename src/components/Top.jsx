@@ -5,13 +5,13 @@ import styled from "styled-components";
 import Card from "./Card";
 import Loading from "./Loading";
 
-function TopTrailer({ link, title }) {
+function Top({ type, title }) {
   const dispatch = useDispatch();
   const { loading, data } = useSelector((state) => state.top);
 
   useEffect(() => {
-    getTop(dispatch, link);
-  }, [dispatch, link]);
+    getTop(dispatch, type);
+  }, [dispatch, type]);
 
   if (loading || !data?.data) {
     return <Loading />;
@@ -22,7 +22,7 @@ function TopTrailer({ link, title }) {
         <div className="pillar"></div>
         <div className="desc">Top {title}</div>
       </div>
-      <Card data={data?.data} title={title} />;
+      <Card data={data?.data} title={title} type={type} />;
     </Wrapper>
   );
 }
@@ -44,4 +44,4 @@ const Wrapper = styled.div`
     font-weight: 600;
   }
 `;
-export default TopTrailer;
+export default Top;

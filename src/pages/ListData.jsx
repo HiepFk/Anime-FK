@@ -45,7 +45,7 @@ function ListData({ type }) {
     <Wrapper>
       <div className="left">
         <List
-          title={text ? `Search by ${text}` : "ALL AINIME"}
+          title={text ? `Search by ${text}` : `All ${type}`}
           data={datas?.data}
           handeSearch={handeSearch}
           setText={setText}
@@ -58,10 +58,7 @@ function ListData({ type }) {
         />
       </div>
       <div className="right content">
-        <Top
-          link={`https://api.jikan.moe/v4/top/${type}?limit=10`}
-          title="anime"
-        />
+        <Top type={type} title={type} />
       </div>
     </Wrapper>
   );

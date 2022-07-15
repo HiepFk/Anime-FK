@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -11,26 +11,10 @@ import { SetPage } from "../redux/dataSlice";
 function Header() {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-  const [index, setIndex] = useState(1);
 
-  const pathname = window.location.pathname;
-  useEffect(() => {
-    if (pathname === "/") {
-      setIndex(1);
-    }
-    if (pathname.includes("/anime")) {
-      setIndex(2);
-    }
-    if (pathname.includes("/manga")) {
-      setIndex(3);
-    }
-    if (pathname.includes("/character")) {
-      setIndex(4);
-    }
-  }, [pathname]);
   return (
     <Wrapper>
-      <Link to={"/"} onClick={() => setIndex(1)}>
+      <Link to={"/"}>
         <img src={logo} alt="" className="img" />
       </Link>
       <div className="fixed">
@@ -39,10 +23,9 @@ function Header() {
             return (
               <Link
                 to={item.url}
-                className={index === item.id ? "item active" : "item"}
+                className="item"
                 key={item.id}
                 onClick={() => {
-                  setIndex(item.id);
                   dispatch(SetPage(1));
                 }}
               >
@@ -90,7 +73,6 @@ const Wrapper = styled.div`
     text-align: center;
     :hover {
       background-color: #e53637;
-      opacity: 0.6;
     }
   }
   .active {

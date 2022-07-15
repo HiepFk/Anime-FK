@@ -9,7 +9,11 @@ function Card({ data = [""], title }) {
       {data?.map((item, index) => {
         return (
           <Link
-            to={`/${title}s/${item?.mal_id}`}
+            to={
+              title === "characters"
+                ? `/${title}/${item?.mal_id}`
+                : `/${title}s/${item?.mal_id}`
+            }
             className="container"
             key={index}
           >

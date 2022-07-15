@@ -6,9 +6,10 @@ import {
   GetMangaSuccess,
   GetMangaError,
 } from "../redux/homeSlice";
+const localLink = process.env.REACT_APP_API_LINK;
 
 export const getHomePage = async (dispatch, type) => {
-  let link = `https://api.jikan.moe/v4/${type}?limit=12`;
+  let link = `${localLink}/${type}?limit=12`;
   if (type === "anime") {
     dispatch(GetAnimeStart());
     try {
