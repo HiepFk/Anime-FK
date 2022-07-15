@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BsArrowRight } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
+import { getHomePage } from "../../api/home";
 import Item from "../Item";
 
-function ListMini({ title, link, data, type }) {
+function List({ title, link, type }) {
+  const dispatch = useDispatch();
+  const anime = useSelector((state) => state.home?.anime?.data?.data);
+  const manga = useSelector((state) => state.home?.manga?.data?.data);
+
+  useEffect(() => {
+    getHomePage(dispatch, type);
+  }, [dispatch, type]);
   return (
     <Wrapper>
       <div className="title">
@@ -18,17 +27,35 @@ function ListMini({ title, link, data, type }) {
         </Link>
       </div>
       <div className="wrapper">
-        {data?.map((item, index) => {
-          return (
-            <Item
-              key={index}
-              image={item?.images?.jpg?.image_url}
-              name={item?.title}
-              type={type}
-              id={item?.mal_id}
-            />
-          );
-        })}
+        {type === "anime" ? (
+          <>
+            {anime?.map((item, index) => {
+              return (
+                <Item
+                  key={index}
+                  image={item?.images?.jpg?.image_url}
+                  name={item?.title}
+                  type={type}
+                  id={item?.mal_id}
+                />
+              );
+            })}
+          </>
+        ) : (
+          <>
+            {manga?.map((item, index) => {
+              return (
+                <Item
+                  key={index}
+                  image={item?.images?.jpg?.image_url}
+                  name={item?.title}
+                  type={type}
+                  id={item?.mal_id}
+                />
+              );
+            })}
+          </>
+        )}
       </div>
     </Wrapper>
   );
@@ -86,4 +113,4 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default ListMini;
+export default List;

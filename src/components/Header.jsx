@@ -1,52 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { SetHeader } from "../redux/topSlice";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../asset/logo.png";
 import { menu } from "../utils/link";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { SetPage } from "../redux/dataSlice";
 
 function Header() {
   const dispatch = useDispatch();
-  const header = useSelector((state) => state.top?.header);
   const [active, setActive] = useState(false);
+  const [index, setIndex] = useState(1);
 
   const pathname = window.location.pathname;
   useEffect(() => {
     if (pathname === "/") {
-      dispatch(SetHeader(1));
+      setIndex(1);
     }
-  }, [dispatch, pathname]);
+    if (pathname.includes("/anime")) {
+      setIndex(2);
+    }
+    if (pathname.includes("/manga")) {
+      setIndex(3);
+    }
+    if (pathname.includes("/character")) {
+      setIndex(4);
+    }
+  }, [pathname]);
   return (
     <Wrapper>
-      <Link to={"/"} onClick={() => dispatch(SetHeader(1))}>
+      <Link to={"/"} onClick={() => setIndex(1)}>
         <img src={logo} alt="" className="img" />
       </Link>
       <div className="fixed">
         <div className={active ? "menu menu_active" : "menu"}>
           {menu.map((item) => {
             return (
-              <>
-                {item.id === 5 && (
-                  <a href={item.url} className="item">
-                    {item.title}
-                  </a>
-                )}
-                {item.id < 5 && (
-                  <>
-                    <Link
-                      to={item.url}
-                      className={header === item.id ? "item active" : "item"}
-                      key={item.id}
-                      onClick={() => dispatch(SetHeader(item.id))}
-                    >
-                      {item.title}
-                    </Link>
-                  </>
-                )}
-              </>
+              <Link
+                to={item.url}
+                className={index === item.id ? "item active" : "item"}
+                key={item.id}
+                onClick={() => {
+                  setIndex(item.id);
+                  dispatch(SetPage(1));
+                }}
+              >
+                {item.title}
+              </Link>
             );
           })}
         </div>

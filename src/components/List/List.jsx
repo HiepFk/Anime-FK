@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Item from "../Item";
 import { FiSearch } from "react-icons/fi";
 
-function ListMini({ title, data, handeSearch, setText, type }) {
+function List({ title, data, handeSearch, setText, type }) {
   return (
     <Wrapper>
       <div className="title">
@@ -101,4 +101,4 @@ const Wrapper = styled.div`
     margin-left: 1rem;
   }
 `;
-export default ListMini;
+export default List;

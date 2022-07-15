@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const animeSlice = createSlice({
-  name: "anime",
+export const dataSlice = createSlice({
+  name: "data",
   initialState: {
-    anime: {},
-    animes: [],
+    data: {},
+    datas: [],
     page: 1,
     loading: false,
     error: false,
@@ -17,46 +17,47 @@ export const animeSlice = createSlice({
       };
     },
 
-    GetAnimeStart: (state) => {
+    GetDataStart: (state) => {
       return {
         ...state,
         loading: true,
         error: false,
       };
     },
-    GetAnimeError: (state) => {
+    GetDataError: (state) => {
       return {
         ...state,
         loading: false,
         error: true,
       };
     },
-    GetAnimeSuccess: (state, action) => {
+    GetDataSuccess: (state, action) => {
       return {
         ...state,
-        anime: action.payload,
+        data: action.payload,
         loading: false,
         error: true,
       };
     },
-    GetAnimesStart: (state) => {
+    GetDatasStart: (state) => {
       return {
         ...state,
         loading: true,
         error: false,
       };
     },
-    GetAnimesError: (state) => {
+    GetDatasError: (state) => {
       return {
         ...state,
         loading: false,
         error: true,
       };
     },
-    GetAnimesSuccess: (state, action) => {
+    GetDatasSuccess: (state, action) => {
+      console.log(action.payload);
       return {
         ...state,
-        animes: action.payload,
+        datas: action.payload,
         loading: false,
         error: true,
       };
@@ -66,11 +67,11 @@ export const animeSlice = createSlice({
 
 export const {
   SetPage,
-  GetAnimesStart,
-  GetAnimesSuccess,
-  GetAnimesError,
-  GetAnimeStart,
-  GetAnimeSuccess,
-  GetAnimeError,
-} = animeSlice.actions;
-export default animeSlice.reducer;
+  GetDatasStart,
+  GetDatasSuccess,
+  GetDatasError,
+  GetDataStart,
+  GetDataSuccess,
+  GetDataError,
+} = dataSlice.actions;
+export default dataSlice.reducer;

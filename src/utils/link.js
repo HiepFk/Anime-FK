@@ -19,9 +19,4 @@ export const menu = [
     title: "Characters",
     url: "/characters",
   },
-  {
-    id: 5,
-    title: "Contact Me",
-    url: "https://fk-porfolio.netlify.app/",
-  },
 ];

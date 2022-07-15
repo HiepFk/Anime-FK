@@ -1,10 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import animeReducer from "./animeSlice";
-import mangaReducer from "./mangaSlice";
-import peopleReducer from "./peopleSlice";
+import dataReducer from "./dataSlice";
 import characterReducer from "./characterSlice";
 import reviewReducer from "./reviewSlice";
 import topReducer from "./topSlice";
+import homeReducer from "./homeSlice";
 import {
   persistStore,
   persistReducer,
@@ -23,12 +22,11 @@ const persistConfig = {
   storage,
 };
 const rootReducer = combineReducers({
-  anime: animeReducer,
-  manga: mangaReducer,
-  people: peopleReducer,
+  data: dataReducer,
   character: characterReducer,
   review: reviewReducer,
   top: topReducer,
+  home: homeReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

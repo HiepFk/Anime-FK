@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Slide from "../components/Home/Slide";
-import Anime from "../components/Home/Anime";
-import Manga from "../components/Home/Manga";
+import List from "../components/Home/List";
 function Home() {
   return (
     <>
       <Slide />
       <Wrapper>
-        <Anime />
-        <Manga />
+        <List title="ANIME" link="/animes" type="anime" />
+        <List title="MANGA" link="/mangas" type="manga" />
       </Wrapper>
     </>
   );

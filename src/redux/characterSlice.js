@@ -5,18 +5,10 @@ export const characterSlice = createSlice({
   initialState: {
     character: {},
     characters: [],
-    page: 1,
-
     loading: false,
     error: false,
   },
   reducers: {
-    SetPage: (state, action) => {
-      return {
-        ...state,
-        page: action.payload,
-      };
-    },
     GetCharacterStart: (state) => {
       return {
         ...state,
@@ -65,7 +57,6 @@ export const characterSlice = createSlice({
 });
 
 export const {
-  SetPage,
   GetCharactersStart,
   GetCharactersSuccess,
   GetCharactersError,

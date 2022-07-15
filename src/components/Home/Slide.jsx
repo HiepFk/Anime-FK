@@ -19,7 +19,7 @@ function Slide() {
     setIndex((preValue) => {
       let newValue = preValue - 1;
       if (newValue < 0) {
-        newValue = 2;
+        newValue = data.length - 1;
       }
       return newValue;
     });

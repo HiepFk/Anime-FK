@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import List from "../components/List/List";
 import Pagination from "../components/List/Pagination";
-import TopTrailer from "../components/TopTrailer";
+import Top from "../components/Top";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { getPageAnime } from "../api/anime";
+import { getPageData } from "../api/data";
 import Loading from "../components/Loading";
-import { SetPage } from "../redux/animeSlice";
+import { SetPage } from "../redux/dataSlice";
 
-function ListAnime() {
+function ListData({ type }) {
   const dispatch = useDispatch();
-  const { loading, animes, page } = useSelector((state) => state.anime);
+  const { loading, datas, page } = useSelector((state) => state.data);
   const [text, setText] = useState("");
-
   const handeSearch = (e) => {
     e.preventDefault();
     dispatch(SetPage(1));
-    getPageAnime(dispatch, page, text);
+    getPageData(dispatch, page, text, type);
   };
 
   const handePage = (e) => {
@@ -35,11 +34,11 @@ function ListAnime() {
   }, []);
 
   useEffect(() => {
-    getPageAnime(dispatch, page, text);
+    getPageData(dispatch, page, text, type);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, page]);
+  }, [dispatch, page, type]);
 
-  if (loading || !animes?.data) {
+  if (loading) {
     return <Loading />;
   }
   return (
@@ -47,20 +46,20 @@ function ListAnime() {
       <div className="left">
         <List
           title={text ? `Search by ${text}` : "ALL AINIME"}
-          data={animes?.data}
+          data={datas?.data}
           handeSearch={handeSearch}
           setText={setText}
-          type="anime"
+          type={type}
         />
         <Pagination
           handePage={handePage}
           page={page}
-          maxPage={animes?.pagination?.last_visible_page}
+          maxPage={datas?.pagination?.last_visible_page}
         />
       </div>
       <div className="right content">
-        <TopTrailer
-          link="https://api.jikan.moe/v4/top/anime?limit=10"
+        <Top
+          link={`https://api.jikan.moe/v4/top/${type}?limit=10`}
           title="anime"
         />
       </div>
@@ -95,4 +94,4 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default ListAnime;
+export default ListData;

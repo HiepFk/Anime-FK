@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { AiFillStar } from "react-icons/ai";
-function Trailer({ data = [""], title }) {
+function Card({ data = [""], title }) {
   return (
     <Wrapper>
       {data?.map((item, index) => {
@@ -84,4 +84,4 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default Trailer;
+export default Card;

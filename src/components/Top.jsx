@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTop } from "../api/top";
 import styled from "styled-components";
-import Trailer from "./Trailer";
+import Card from "./Card";
 import Loading from "./Loading";
 
 function TopTrailer({ link, title }) {
@@ -22,7 +22,7 @@ function TopTrailer({ link, title }) {
         <div className="pillar"></div>
         <div className="desc">Top {title}</div>
       </div>
-      <Trailer data={data?.data} title={title} />;
+      <Card data={data?.data} title={title} />;
     </Wrapper>
   );
 }

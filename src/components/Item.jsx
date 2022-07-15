@@ -17,7 +17,7 @@ function Item({ name, image, type, id }) {
             <AiFillEye className="icon" />
           </Link>
         )}
-        {type === "character" && (
+        {type === "characters" && (
           <Link to={`/characters/${id}`} className="container">
             <AiFillEye className="icon" />
           </Link>

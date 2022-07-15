@@ -30,7 +30,7 @@ function Video() {
       ></iframe>
       <div className="title">
         <div className="pillar"></div>
-        <div className="desc">LIST VIDEO</div>
+        <div className="desc">LIST VIDEO (API NOT SUPPORTED MOVIES)</div>
       </div>
       <div className="list">
         {arr.map((item) => {

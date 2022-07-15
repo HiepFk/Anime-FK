@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetailAnime } from "../api/anime";
+import { getDetailData } from "../api/data";
 import { getCharacter } from "../api/character";
 import { getReviews } from "../api/review";
 import Loading from "../components/Loading";
@@ -11,17 +11,17 @@ import Synopsis from "../components/Detail/Synopsis";
 import Charater from "../components/Detail/Charater";
 import Review from "../components/Detail/Review";
 
-function DetailAnime() {
+function Detail({ type }) {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { loading, anime } = useSelector((state) => state.anime);
+  const { loading, data } = useSelector((state) => state.data);
   const { characters } = useSelector((state) => state.character);
   const { reviews } = useSelector((state) => state.review);
   useEffect(() => {
-    getDetailAnime(dispatch, id);
-    getCharacter(dispatch, id, "anime");
-    getReviews(dispatch, id, "anime");
-  }, [dispatch, id]);
+    getDetailData(dispatch, id, type);
+    getCharacter(dispatch, id, type);
+    getReviews(dispatch, id, type);
+  }, [dispatch, id, type]);
 
   useEffect(() => {
     window.scrollTo({
@@ -39,9 +39,9 @@ function DetailAnime() {
   });
   return (
     <Wrapper>
-      <Info anime={anime?.data} />
+      <Info anime={data?.data} />
       <div className="content">
-        <Synopsis synopsis={anime?.data?.synopsis} />
+        <Synopsis synopsis={data?.data?.synopsis} />
         <Charater data={mains} />
         <Review data={reviews?.data} />
       </div>
@@ -63,4 +63,4 @@ const Wrapper = styled.div`
     padding: 0rem 3rem;
   }
 `;
-export default DetailAnime;
+export default Detail;
